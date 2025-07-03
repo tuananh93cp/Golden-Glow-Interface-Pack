@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Glow Interface Pack - Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff9c4, #ffeb3b);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #ff8f00;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .section h2 {
+            color: #ff8f00;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .setting-group {
+            margin-bottom: 20px;
+        }
+
+        .setting-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .setting-description {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .toggle-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #ffd700;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(30px);
+        }
+
+        .slider-control {
+            margin-bottom: 15px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: #ff8f00;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ffc107);
+            color: #333;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: #666;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .theme-option {
+            width: 80px;
+            height: 50px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .theme-option.golden {
+            background: linear-gradient(135deg, #ffd700, #ffc107);
+        }
+
+        .theme-option.silver {
+            background: linear-gradient(135deg, #c0c0c0, #808080);
+        }
+
+        .theme-option.bronze {
+            background: linear-gradient(135deg, #cd7f32, #8b4513);
+        }
+
+        .theme-option.active {
+            border-color: #333;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #ff8f00;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .advanced-settings {
+            display: none;
+        }
+
+        .advanced-settings.show {
+            display: block;
+        }
+
+        .toggle-advanced {
+            cursor: pointer;
+            color: #ff8f00;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .toggle-advanced:hover {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .theme-selector {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Golden Glow Interface Pack</h1>
+            <p>Customize your browsing experience with beautiful golden themes</p>
+        </div>
+
+        <div class="status-message" id="statusMessage"></div>
+
+        <div class="section">
+            <h2>🎛️ General Settings</h2>
+            
+            <div class="setting-group">
+                <div class="toggle-control">
+                    <div class="toggle-switch" id="enabledToggle"></div>
+                    <div>
+                        <label class="setting-label">Enable Golden Glow</label>
+                        <div class="setting-description">Turn the extension on or off globally</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <div class="slider-control">
+                    <div class="slider-label">
+                        <span class="setting-label">Glow Intensity</span>
+                        <span class="slider-value" id="intensityValue">80%</span>
+                    </div>
+                    <div class="setting-description">Control the intensity of the golden glow effect</div>
+                    <input type="range" class="slider" id="intensitySlider" min="0" max="100" value="80">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎨 Visual Effects</h2>
+            
+            <div class="setting-group">
+                <div class="toggle-control">
+                    <div class="toggle-switch" id="animationsToggle"></div>
+                    <div>
+                        <label class="setting-label">Enable Animations</label>
+                        <div class="setting-description">Show smooth animations and transitions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <div class="toggle-control">
+                    <div class="toggle-switch" id="backgroundToggle"></div>
+                    <div>
+                        <label class="setting-label">Custom Background</label>
+                        <div class="setting-description">Apply golden gradient background overlay</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label class="setting-label">Theme Variant</label>
+                <div class="setting-description">Choose your preferred golden theme</div>
+                <div class="theme-selector">
+                    <div class="theme-option golden active" data-theme="golden">Golden</div>
+                    <div class="theme-option silver" data-theme="silver">Silver</div>
+                    <div class="theme-option bronze" data-theme="bronze">Bronze</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ Advanced Settings</h2>
+            <div class="toggle-advanced" id="toggleAdvanced">▶ Show Advanced Options</div>
+            
+            <div class="advanced-settings" id="advancedSettings">
+                <div class="setting-group">
+                    <div class="toggle-control">
+                        <div class="toggle-switch" id="autoRefreshToggle"></div>
+                        <div>
+                            <label class="setting-label">Auto-refresh on Changes</label>
+                            <div class="setting-description">Automatically refresh tabs when settings change</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <div class="toggle-control">
+                        <div class="toggle-switch" id="respectSystemToggle"></div>
+                        <div>
+                            <label class="setting-label">Respect System Theme</label>
+                            <div class="setting-description">Adapt to dark/light mode preferences</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span class="setting-label">Animation Speed</span>
+                            <span class="slider-value" id="animationSpeedValue">1.0x</span>
+                        </div>
+                        <div class="setting-description">Control animation playback speed</div>
+                        <input type="range" class="slider" id="animationSpeedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" id="saveBtn">💾 Save Settings</button>
+            <button class="btn btn-secondary" id="resetBtn">🔄 Reset to Default</button>
+            <button class="btn btn-danger" id="clearDataBtn">🗑️ Clear All Data</button>
+        </div>
+
+        <div class="footer">
+            <p>Golden Glow Interface Pack v1.0.0 - Made with ❤️ by XMP</p>
+            <div>
+                <a href="https://github.com/tuananh93cp/Golden-Glow-Interface-Pack" target="_blank">GitHub</a>
+                <a href="mailto:lanhanh64529@gmail.com">Support</a>
+                <a href="#" id="aboutLink">About</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/options.js"></script>
+</body>
+</html> 

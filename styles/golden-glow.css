@@ -1,0 +1,343 @@
+/* Golden Glow Interface Pack - Main Styles */
+/* Copyright (c) 2025 XMP */
+
+:root {
+  --golden-primary: #ffd700;
+  --golden-secondary: #ffc107;
+  --golden-accent: #ffeb3b;
+  --golden-dark: #ff8f00;
+  --golden-light: #fff9c4;
+  --golden-shadow: rgba(255, 215, 0, 0.3);
+  --golden-glow: rgba(255, 215, 0, 0.6);
+  --golden-text: #333;
+  --golden-text-light: #666;
+  --golden-background: rgba(255, 215, 0, 0.05);
+  --golden-border: rgba(255, 215, 0, 0.2);
+  --golden-hover: rgba(255, 215, 0, 0.1);
+  --golden-focus: rgba(255, 215, 0, 0.4);
+  --golden-gradient: linear-gradient(135deg, var(--golden-primary), var(--golden-secondary));
+  --golden-gradient-light: linear-gradient(135deg, var(--golden-light), var(--golden-accent));
+  --golden-glow-intensity: 0.8;
+  --golden-glow-animations: running;
+}
+
+/* Global Golden Glow Effects */
+.golden-glow-active {
+  transition: all 0.3s ease;
+}
+
+.golden-glow-active *::selection {
+  background: var(--golden-glow);
+  color: var(--golden-text);
+}
+
+.golden-glow-active *::-moz-selection {
+  background: var(--golden-glow);
+  color: var(--golden-text);
+}
+
+/* Golden Glow Button Styles */
+.golden-glow-button {
+  background: var(--golden-gradient) !important;
+  border: 2px solid var(--golden-border) !important;
+  color: var(--golden-text) !important;
+  box-shadow: 0 4px 15px var(--golden-shadow) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.golden-glow-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px var(--golden-shadow) !important;
+  filter: brightness(1.1) !important;
+}
+
+.golden-glow-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 10px var(--golden-shadow) !important;
+}
+
+.golden-glow-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -50% !important;
+  left: -50% !important;
+  width: 200% !important;
+  height: 200% !important;
+  background: linear-gradient(45deg, transparent, var(--golden-glow), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  animation: golden-shimmer 2s infinite linear !important;
+  animation-play-state: var(--golden-glow-animations) !important;
+}
+
+.golden-glow-button:hover::before {
+  opacity: 0.3 !important;
+}
+
+/* Golden Glow Input Styles */
+.golden-glow-input {
+  background: var(--golden-background) !important;
+  border: 2px solid var(--golden-border) !important;
+  color: var(--golden-text) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.1) !important;
+}
+
+.golden-glow-input:focus {
+  border-color: var(--golden-primary) !important;
+  box-shadow: 0 0 0 3px var(--golden-focus) !important;
+  outline: none !important;
+  background: var(--golden-light) !important;
+}
+
+.golden-glow-input::placeholder {
+  color: var(--golden-text-light) !important;
+}
+
+/* Golden Glow Card Styles */
+.golden-glow-card {
+  background: var(--golden-background) !important;
+  border: 1px solid var(--golden-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.golden-glow-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2) !important;
+  border-color: var(--golden-primary) !important;
+}
+
+.golden-glow-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: var(--golden-gradient) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.golden-glow-card:hover::before {
+  opacity: 1 !important;
+}
+
+/* Golden Glow Navigation Styles */
+.golden-glow-nav {
+  background: var(--golden-background) !important;
+  border-bottom: 2px solid var(--golden-border) !important;
+  box-shadow: 0 2px 15px rgba(255, 215, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.golden-glow-nav a,
+.golden-glow-nav .nav-link {
+  color: var(--golden-text) !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.golden-glow-nav a:hover,
+.golden-glow-nav .nav-link:hover {
+  color: var(--golden-dark) !important;
+  text-shadow: 0 0 10px var(--golden-glow) !important;
+}
+
+.golden-glow-nav a::after,
+.golden-glow-nav .nav-link::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--golden-gradient) !important;
+  transition: width 0.3s ease !important;
+}
+
+.golden-glow-nav a:hover::after,
+.golden-glow-nav .nav-link:hover::after {
+  width: 100% !important;
+}
+
+/* Golden Glow Scrollbar */
+.golden-glow-active ::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+.golden-glow-active ::-webkit-scrollbar-track {
+  background: var(--golden-background) !important;
+  border-radius: 6px !important;
+}
+
+.golden-glow-active ::-webkit-scrollbar-thumb {
+  background: var(--golden-gradient) !important;
+  border-radius: 6px !important;
+  border: 2px solid var(--golden-light) !important;
+}
+
+.golden-glow-active ::-webkit-scrollbar-thumb:hover {
+  background: var(--golden-dark) !important;
+}
+
+/* Golden Glow Animations */
+@keyframes golden-shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes golden-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes golden-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--golden-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--golden-glow);
+  }
+}
+
+/* Golden Glow Text Selection */
+.golden-glow-active h1,
+.golden-glow-active h2,
+.golden-glow-active h3,
+.golden-glow-active h4,
+.golden-glow-active h5,
+.golden-glow-active h6 {
+  color: var(--golden-text) !important;
+  text-shadow: 0 2px 4px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Golden Glow Links */
+.golden-glow-active a {
+  color: var(--golden-dark) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.golden-glow-active a:hover {
+  color: var(--golden-primary) !important;
+  text-shadow: 0 0 8px var(--golden-glow) !important;
+}
+
+/* Golden Glow Form Elements */
+.golden-glow-active select {
+  background: var(--golden-background) !important;
+  border: 2px solid var(--golden-border) !important;
+  color: var(--golden-text) !important;
+  border-radius: 8px !important;
+}
+
+.golden-glow-active checkbox,
+.golden-glow-active radio {
+  accent-color: var(--golden-primary) !important;
+}
+
+/* Golden Glow Tables */
+.golden-glow-active table {
+  background: var(--golden-background) !important;
+  border: 1px solid var(--golden-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.golden-glow-active th {
+  background: var(--golden-gradient) !important;
+  color: var(--golden-text) !important;
+  font-weight: 600 !important;
+}
+
+.golden-glow-active td {
+  border-bottom: 1px solid var(--golden-border) !important;
+}
+
+.golden-glow-active tr:hover {
+  background: var(--golden-hover) !important;
+}
+
+/* Golden Glow Modals and Popups */
+.golden-glow-active .modal,
+.golden-glow-active .popup,
+.golden-glow-active .dialog {
+  background: var(--golden-background) !important;
+  border: 2px solid var(--golden-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Golden Glow Tooltips */
+.golden-glow-active [title]:hover::after {
+  content: attr(title) !important;
+  position: absolute !important;
+  bottom: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: var(--golden-gradient) !important;
+  color: var(--golden-text) !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  z-index: 1000 !important;
+  box-shadow: 0 4px 15px var(--golden-shadow) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .golden-glow-button {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+  
+  .golden-glow-input {
+    font-size: 16px !important;
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .golden-glow-active {
+    --golden-text: #f0f0f0;
+    --golden-text-light: #ccc;
+    --golden-background: rgba(255, 215, 0, 0.08);
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .golden-glow-active {
+    --golden-border: rgba(255, 215, 0, 0.8);
+    --golden-shadow: rgba(255, 215, 0, 0.6);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .golden-glow-active * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+} 

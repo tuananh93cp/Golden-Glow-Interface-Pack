@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Golden Glow Interface Pack",
+  "version": "1.0.0",
+  "description": "Transform your Chrome experience with beautiful golden interface enhancements and visual improvements.",
+  "author": "XMP",
+  "homepage_url": "https://github.com/tuananh93cp/Golden-Glow-Interface-Pack",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["styles/golden-glow.css"],
+      "js": ["scripts/content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Golden Glow Interface Pack",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "options_page": "options.html",
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*", "styles/*", "scripts/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+} 

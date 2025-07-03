@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Golden Glow - Tạo Icons Tự Động</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff9c4, #ffeb3b);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #ff8f00;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .icons-preview {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .icon-item {
+            text-align: center;
+        }
+
+        .icon-item h3 {
+            color: #ff8f00;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #ffd700, #ffc107);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            margin: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .instructions h3 {
+            color: #ff8f00;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status.error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .icons-preview {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Golden Glow Icons Generator</h1>
+            <p>Tự động tạo và tải về các file PNG icons cho extension</p>
+        </div>
+
+        <div class="icons-preview">
+            <div class="icon-item">
+                <h3>16x16 pixels</h3>
+                <canvas id="canvas16" width="16" height="16" style="border: 2px solid #ffd700; border-radius: 8px;"></canvas>
+            </div>
+            <div class="icon-item">
+                <h3>48x48 pixels</h3>
+                <canvas id="canvas48" width="48" height="48" style="border: 2px solid #ffd700; border-radius: 8px;"></canvas>
+            </div>
+            <div class="icon-item">
+                <h3>128x128 pixels</h3>
+                <canvas id="canvas128" width="128" height="128" style="border: 2px solid #ffd700; border-radius: 8px;"></canvas>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadAllIcons()">
+                📥 Download All Icons PNG
+            </button>
+            <button class="download-btn" onclick="downloadSingle(16)">
+                Download 16x16
+            </button>
+            <button class="download-btn" onclick="downloadSingle(48)">
+                Download 48x48
+            </button>
+            <button class="download-btn" onclick="downloadSingle(128)">
+                Download 128x128
+            </button>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="instructions">
+            <h3>📋 Hướng Dẫn Sử Dụng:</h3>
+            <ol>
+                <li>Click nút "Download All Icons PNG" để tải về cả 3 file</li>
+                <li>Hoặc click từng nút riêng lẻ để tải từng file</li>
+                <li>Copy các file PNG vào thư mục <code>icons/</code> của extension</li>
+                <li>Reload extension trong Chrome</li>
+                <li>Extension sẽ hoạt động ngay! 🎉</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>🌟 Golden Glow Interface Pack - Made with ❤️ by XMP</p>
+        </div>
+    </div>
+
+    <script>
+        // Tạo icon trên canvas
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Gradient vàng
+            const gradient = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+            gradient.addColorStop(0, '#fff9c4');
+            gradient.addColorStop(0.5, '#ffeb3b');
+            gradient.addColorStop(1, '#ffd700');
+            
+            // Vẽ circle với gradient
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Viền vàng
+            ctx.strokeStyle = '#ff8f00';
+            ctx.lineWidth = size > 64 ? 3 : (size > 32 ? 2 : 1);
+            ctx.stroke();
+            
+            // Ngôi sao emoji
+            ctx.fillStyle = '#ff8f00';
+            ctx.font = `${size/3}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('⭐', size/2, size/2);
+        }
+
+        // Download single icon
+        function downloadSingle(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon${size}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showStatus(`✅ Đã tải icon${size}.png thành công!`, 'success');
+            }, 'image/png');
+        }
+
+        // Download all icons
+        function downloadAllIcons() {
+            const sizes = [16, 48, 128];
+            let downloadCount = 0;
+            
+            showStatus('📥 Đang tạo và tải các file PNG...', 'success');
+            
+            sizes.forEach(size => {
+                setTimeout(() => {
+                    downloadSingle(size);
+                    downloadCount++;
+                    
+                    if (downloadCount === sizes.length) {
+                        setTimeout(() => {
+                            showStatus('🎉 Đã tải tất cả icons thành công! Copy vào thư mục icons/ và reload extension.', 'success');
+                        }, 500);
+                    }
+                }, size * 10); // Delay nhỏ để tránh conflict
+            });
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 4000);
+            }
+        }
+
+        // Initialize icons when page loads
+        window.addEventListener('load', function() {
+            drawIcon(document.getElementById('canvas16'), 16);
+            drawIcon(document.getElementById('canvas48'), 48);
+            drawIcon(document.getElementById('canvas128'), 128);
+            
+            showStatus('✅ Icons đã sẵn sàng! Click nút Download để tải về.', 'success');
+        });
+    </script>
+</body>
+</html> 

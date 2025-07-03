@@ -1,0 +1,45 @@
+{
+  "name": "golden-glow-interface-pack",
+  "version": "1.0.0",
+  "description": "Transform your browsing experience with beautiful golden themes and interface enhancements",
+  "main": "background.js",
+  "scripts": {
+    "create-icons": "node create-png-icons.js",
+    "build": "node build.js",
+    "test": "node test-extension.js",
+    "convert-icons": "node convert-icons.js",
+    "push-github": "node git-push-script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuananh93cp/Golden-Glow-Interface-Pack.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "firefox-addon",
+    "golden-theme",
+    "interface",
+    "glow-effects",
+    "browser-extension",
+    "ui-enhancement",
+    "web-interface"
+  ],
+  "author": {
+    "name": "XMP",
+    "email": "lanhanh64529@gmail.com",
+    "url": "https://github.com/tuananh93cp"
+  },
+  "license": "Custom",
+  "bugs": {
+    "url": "https://github.com/tuananh93cp/Golden-Glow-Interface-Pack/issues"
+  },
+  "homepage": "https://github.com/tuananh93cp/Golden-Glow-Interface-Pack#readme",
+  "devDependencies": {
+    "archiver": "^5.3.0",
+    "sharp": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "private": false
+} 

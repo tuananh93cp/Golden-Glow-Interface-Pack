@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Glow Interface Pack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff9c4, #ffeb3b);
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            color: #ff8f00;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .toggle-section {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .toggle-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #ffd700;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(26px);
+        }
+
+        .intensity-control {
+            margin-top: 10px;
+        }
+
+        .intensity-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .intensity-slider {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .intensity-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .intensity-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .quick-btn {
+            flex: 1;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #ffd700, #ffc107);
+            border: none;
+            border-radius: 6px;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .status-indicator {
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-inactive {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .footer a {
+            color: #ff8f00;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+        }
+
+        .theme-preview {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .theme-option {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option.golden {
+            background: linear-gradient(135deg, #ffd700, #ffc107);
+        }
+
+        .theme-option.silver {
+            background: linear-gradient(135deg, #c0c0c0, #808080);
+        }
+
+        .theme-option.bronze {
+            background: linear-gradient(135deg, #cd7f32, #8b4513);
+        }
+
+        .theme-option.active {
+            border-color: #333;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌟 Golden Glow</h1>
+        <p>Transform your browsing experience</p>
+    </div>
+
+    <div class="status-indicator" id="status">
+        <span id="statusText">Loading...</span>
+    </div>
+
+    <div class="toggle-section">
+        <div class="toggle-control">
+            <span class="toggle-label">Enable Golden Glow</span>
+            <div class="toggle-switch" id="mainToggle"></div>
+        </div>
+        
+        <div class="intensity-control">
+            <div class="intensity-label">Glow Intensity: <span id="intensityValue">80%</span></div>
+            <input type="range" class="intensity-slider" id="intensitySlider" min="0" max="100" value="80">
+        </div>
+    </div>
+
+    <div class="toggle-section">
+        <div class="toggle-control">
+            <span class="toggle-label">Animations</span>
+            <div class="toggle-switch" id="animationsToggle"></div>
+        </div>
+        
+        <div class="toggle-control">
+            <span class="toggle-label">Custom Background</span>
+            <div class="toggle-switch" id="backgroundToggle"></div>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <button class="quick-btn" id="settingsBtn">Settings</button>
+        <button class="quick-btn" id="refreshBtn">Refresh</button>
+    </div>
+
+    <div class="footer">
+        <a href="#" id="aboutBtn">About & Support</a>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+</body>
+</html> 
